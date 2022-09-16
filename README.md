@@ -3,7 +3,7 @@ To compile
 Ensure you are on a linux compatible platform (for example ubuntu)\
 Ensure the following libraries are installed (log4cxx gtest)\
 liblog4cxx-dev\
-libgtest-dev\
+libgtest-dev
 
 Run the following to compile/build the executable\
 cmake .\
