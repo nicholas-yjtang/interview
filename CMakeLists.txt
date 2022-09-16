@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.6)
 project(virus)
 set(CMAKE_CXX_STANDARD 17)
-find_package(log4cxx REQUIRED)
+find_package(PkgConfig REQUIRED)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(infect_time main.cpp transmission.cpp WardFactory.cpp)
