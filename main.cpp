@@ -1,14 +1,23 @@
 #include "transmission.h"
+#include "WardFactory.h"
 #include <memory>
 #include <fstream>
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <log4cxx/logger.h>
+#include <log4cxx/propertyconfigurator.h>
 
 using namespace std;
+using namespace log4cxx;
+
+LoggerPtr mainlogger (Logger::getLogger("main"));
+
+
 
 int main(int argc, char** argv) {
     if (argc <=1) return 1;
+    PropertyConfigurator::configure("conf/log4j.properties");
     ifstream file;
     string line;
     file.open(argv[1]);
@@ -19,37 +28,22 @@ int main(int argc, char** argv) {
             getline(file, line);
             int delimiter_index = line.find(" ");
             int row = stoi(line.substr(0, delimiter_index));
-            int column = stoi(line.substr(delimiter_index+1, string::npos));
-            int ** patient_wards = new int*[row];
+            int column = stoi(line.substr(delimiter_index+1, string::npos));            
+            auto custom_deleter = [row,column] (int** t) {WardFactory::free_wards(t,row,column);};
+            unique_ptr<int*, decltype(custom_deleter)> patient_wards (WardFactory::create_ward(row, column), custom_deleter);
             for (int i = 0; i < row; i++) {
-                patient_wards[i] = new int[column];
                 getline(file,line);                
                 stringstream tokenizer (line);
                 string token;
                 for (int j = 0; j < column; j++) {
                     getline(tokenizer, token, ' ');
-                    patient_wards[i][j] = stoi(token);
+                    if (!token.empty()) (patient_wards.get())[i][j] = stoi(token);
+                    else (patient_wards.get())[i][j] = 0;
                 }
             }
-            cout << "row:" << row << "column:" << column << endl;
-            for (int i = 0; i < row; i++) {
-                for (int j = 0; j < column; j++) {
-                    cout << patient_wards[i][j] << " ";
-                }
-                cout << endl;
-            }
-            cout << transmission->getInfectedTime(row, column, patient_wards) << endl;
-
-            for (int i = 0; i < row; i++) {
-                for (int j = 0; j < column; j++) {
-                    cout << patient_wards[i][j] << " ";
-                }
-                cout << endl;              
-            }  
-            for (int i = 0; i < row; i++) {
-                delete [] patient_wards[i];
-            }
-            delete [] patient_wards;
+            LOG4CXX_DEBUG(mainlogger, "original ward\n" << WardFactory::printWards(row, column, patient_wards.get()));
+            cout << transmission->getInfectedTime(row, column, patient_wards.get()) << endl;
+            LOG4CXX_DEBUG(mainlogger, "after infection ward\n" << WardFactory::printWards(row, column, patient_wards.get()));
         }
         file.close();
     }

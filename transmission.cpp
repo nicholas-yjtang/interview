@@ -1,6 +1,11 @@
 #include "transmission.h"
 #include <iostream>
+#include <log4cxx/logger.h>
+
 using namespace std;
+using namespace log4cxx;
+
+LoggerPtr transmissionLogger (Logger::getLogger("transmission"));
 
 Transmission::Transmission() {
 
@@ -20,7 +25,7 @@ int Transmission::getInfectedTime(int row, int column, int ** patient_wards) {
     if (current_infected.empty()) return -1;
     int current_time = 0;
     while (!current_infected.empty()) {
-        cout << "step " << current_time << endl;
+        LOG4CXX_DEBUG(transmissionLogger, "step " << current_time);
         infect(row, column,patient_wards, current_infected, newly_infected);    
         if (newly_infected.empty()) break;
         current_infected.swap(newly_infected);    
@@ -49,7 +54,7 @@ bool Transmission::isFullyInfected(int row, int column, int ** ward) {
 void Transmission::infect(int row, int column, int ** patient_wards, queue<Transmission::ward> &current_infected, queue<Transmission::ward> &newly_infected) {
     while (!current_infected.empty()) {
         Transmission::ward current_ward = current_infected.front();
-        cout << "currently infected ward[" << current_ward.row << "][" << current_ward.column <<"]" << endl; 
+        LOG4CXX_DEBUG(transmissionLogger, "currently infected ward[" << current_ward.row << "][" << current_ward.column <<"]");
         current_infected.pop();
         infectUp(current_ward.row, current_ward.column, row, column, patient_wards, newly_infected);
         infectDown(current_ward.row, current_ward.column, row, column, patient_wards, newly_infected);
@@ -64,7 +69,7 @@ void Transmission::infect(int current_row, int current_column, int patient_wards
     if (current_column >= patient_wards_column) return;
     if (patient_wards[current_row][current_column] == 1) {
         patient_wards[current_row][current_column] = 2;
-        cout << "ward[" << current_row << "][" << current_column << "] is infected" << endl;
+        LOG4CXX_DEBUG(transmissionLogger, "ward[" << current_row << "][" << current_column << "] is infected");
         infected.push({current_row, current_column});
     }
 }

@@ -1,6 +1,7 @@
 #ifndef TRANSMISSION_H
 #define TRANSMISSION_H
 #include <queue>
+#include <string>
 using namespace std;
 
 class Transmission {
@@ -20,6 +21,6 @@ class Transmission {
         void infect(int current_row, int current_column, int patient_wards_row, int patient_wards_column, int ** patient_wards, queue<Transmission::ward> & infected);
         void infect(int row, int column, int ** patient_wards, queue<Transmission::ward> &current_infected, queue<Transmission::ward>& newly_infected);
         bool isFullyInfected(int row, int column, int ** patient_wards);
-
+        string printWards(int row, int column, int ** patient_wards);
 };
 #endif
