@@ -1,4 +1,4 @@
-To compile\
+To compile
 
 Ensure you are on a linux compatible platform (for example ubuntu)\
 Ensure the following libraries are installed (log4cxx gtest)\
@@ -7,7 +7,7 @@ libgtest-dev\
 
 Run the following to compile/build the executable\
 cmake .\
-make\
+make
 
 Running the application, the log4j.properties file should be in the folder (conf/log4j.properties), with the input as a text file, of the format\
 row column\
