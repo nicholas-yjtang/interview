@@ -15,7 +15,7 @@ x x x x x\
 x x x x x
 
 where x is 0, 1 or 2 to denote empty ward, uninfected patient, and infected patient respectively\
-infect_time sample.txt
+infect_time sample/sample.txt
 
 Alternatively you can use docker to build the sample, with the docker image called virus\
 docker build -t virus .
