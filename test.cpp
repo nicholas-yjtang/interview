@@ -67,6 +67,16 @@ TEST(TestVirus,TestVirus) {
     patient_wards[0][0] = 2;
     GTEST_ASSERT_EQ(transmission->getInfectedTime(1000,1000,patient_wards),1998);
     WardFactory::free_wards(patient_wards, 1000,1000);
+    //stress test with all infections except for 1 at the bottom right
+    patient_wards = WardFactory::create_ward(1000,1000);
+    for (int i = 0; i < 1000; i++) {
+      for (int j = 0; j < 1000; j++) {
+        patient_wards[i][j] = 2;
+      }
+    }
+    patient_wards[999][999] = 1;
+    GTEST_ASSERT_EQ(transmission->getInfectedTime(1000,1000,patient_wards),1);
+    WardFactory::free_wards(patient_wards, 1000,1000);
 
 }
 
