@@ -22,5 +22,8 @@ class Transmission {
         void infect(int row, int column, int ** patient_wards, queue<Transmission::ward> &current_infected, queue<Transmission::ward>& newly_infected);
         bool isFullyInfected(int row, int column, int ** patient_wards);
         string printWards(int row, int column, int ** patient_wards);
+        bool isInfected(int current_row, int current_column, int**patient_wards);
+        bool isUninfected(int current_row, int current_column, int**patient_wards);
+
 };
 #endif

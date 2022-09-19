@@ -67,7 +67,7 @@ void Transmission::infect(int current_row, int current_column, int patient_wards
     if (current_column< 0) return;
     if (current_row>=patient_wards_row) return;
     if (current_column >= patient_wards_column) return;
-    if (patient_wards[current_row][current_column] == 1) {
+    if (isUninfected(current_row,current_column,patient_wards)) {
         patient_wards[current_row][current_column] = 2;
         LOG4CXX_DEBUG(transmissionLogger, "ward[" << current_row << "][" << current_column << "] is infected");
         infected.push({current_row, current_column});
@@ -75,19 +75,29 @@ void Transmission::infect(int current_row, int current_column, int patient_wards
 }
 
 void Transmission::infectUp(int current_row, int current_column, int patient_wards_row, int patient_wards_column,int ** patient_wards, queue<Transmission::ward> & infected) {
-    if (patient_wards[current_row][current_column] == 2) infect(current_row-1, current_column,patient_wards_row, patient_wards_column, patient_wards, infected);
+    if (isInfected(current_row, current_column,patient_wards)) infect(current_row-1, current_column,patient_wards_row, patient_wards_column, patient_wards, infected);
 }
 
 void Transmission::infectDown(int current_row, int current_column, int patient_wards_row, int patient_wards_column,int ** patient_wards, queue<Transmission::ward> & infected) {
-    if (patient_wards[current_row][current_column] == 2) infect(current_row+1, current_column,patient_wards_row, patient_wards_column, patient_wards, infected);
+    if (isInfected(current_row, current_column,patient_wards)) infect(current_row+1, current_column,patient_wards_row, patient_wards_column, patient_wards, infected);
 
 }
 
 void Transmission::infectLeft(int current_row, int current_column, int patient_wards_row, int patient_wards_column,int ** patient_wards, queue<Transmission::ward> & infected) {
-    if (patient_wards[current_row][current_column] == 2) infect(current_row, current_column-1,patient_wards_row, patient_wards_column, patient_wards, infected);
+    if (isInfected(current_row, current_column,patient_wards)) infect(current_row, current_column-1,patient_wards_row, patient_wards_column, patient_wards, infected);
 
 }
 
 void Transmission::infectRight(int current_row, int current_column, int patient_wards_row, int patient_wards_column, int ** patient_wards, queue<Transmission::ward> & infected) {
-    if (patient_wards[current_row][current_column] == 2) infect(current_row, current_column+1,patient_wards_row, patient_wards_column, patient_wards, infected);
+    if (isInfected(current_row, current_column,patient_wards)) infect(current_row, current_column+1,patient_wards_row, patient_wards_column, patient_wards, infected);
+}
+
+bool Transmission::isInfected(int current_row, int current_column, int ** patient_wards) {
+    if (patient_wards[current_row][current_column] == 2) return true;
+    return false;
+}
+
+bool Transmission::isUninfected(int current_row, int current_column, int ** patient_wards) {
+    if (patient_wards[current_row][current_column] == 1) return true;
+    return false;
 }
