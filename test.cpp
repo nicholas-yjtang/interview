@@ -77,6 +77,15 @@ TEST(TestVirus,TestVirus) {
     patient_wards[999][999] = 1;
     GTEST_ASSERT_EQ(transmission->getInfectedTime(1000,1000,patient_wards),1);
     WardFactory::free_wards(patient_wards, 1000,1000);
+    //special case where the entire hospital is empty
+    patient_wards = WardFactory::create_ward(1000,1000);
+    for (int i = 0; i < 1000; i++) {
+      for (int j = 0; j < 1000; j++) {
+        patient_wards[i][j] = 0;
+      }
+    }
+    GTEST_ASSERT_EQ(transmission->getInfectedTime(1000,1000,patient_wards),-1);
+    WardFactory::free_wards(patient_wards, 1000,1000);
 
 }
 
