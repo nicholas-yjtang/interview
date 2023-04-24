@@ -24,17 +24,12 @@ app.get("/script.js", (req, res) => {
 app.post("/predict", async (req, res) => {
   try {
     const inputData = req.body;
-    console.log("inputData:" + inputData)
-    const jsonData = JSON.stringify(inputData);
-    console.log("jsonData:" + jsonData)
-  
+    const jsonData = JSON.stringify(inputData);  
     const response = await axios.post(flaskEndpoint, inputData);
-    console.log("response.data:"  + response.data)
     res.send(response.data);
   } catch (error) {
     console.log ("error:" + error)
     res.status(500).send("Unable to predict the species");
-    //res.status(error.response.status).send(error.response.statusText);
   }
 });
 
