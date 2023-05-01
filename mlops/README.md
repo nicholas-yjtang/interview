@@ -10,6 +10,12 @@ flowchart LR
     B --> |Output| C[Model file]
     C --> |Create| D[Flask Microservice, Web application]
 ```
+Created a bash script (build.sh) that will build all the relevant components, namely
+1. Using convert.py, that will convert the ipynb to a python file, suppressing the plots created by commenting them out in the final python file
+2. Add lines to the end of the converted python file (output_model.py) that will export the model to a pickle file format
+3. Create a flask container application (app.py) that will load this model file via docker build
+4. Create the web application container that will use the flask container via docker build
+5. Compose both containers via docker compose
 
 ```mermaid
 C4Container
@@ -26,13 +32,6 @@ Container_Boundary(c1, "Services providing ML") {
 Rel(user, web_app, "Uses", "HTTP")
 
 ```
-
-Created a bash script (build.sh) that will build all the relevant components, namely
-1. Using convert.py, that will convert the ipynb to a python file, suppressing the plots created by commenting them out in the final python file
-2. Add lines to the end of the converted python file (output_model.py) that will export the model to a pickle file format
-3. Create a flask container application (app.py) that will load this model file via docker build
-4. Create the web application container that will use the flask container via docker build
-5. Compose both containers via docker compose
 
 The user interacts with the containers in the following manner
 1. User will input the relevant sepal/petal length/width via the web app
