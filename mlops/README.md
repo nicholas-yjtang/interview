@@ -1,8 +1,8 @@
-Scenario
+# Scenario
 
 You were just given the jupyter notebook of one of your data scientist, who has created a model based on his analysis. Using this notebook as a start, create a pipeline that deploys the model, and have a web application call this deployed model for predictions. You are given this notebook, iris.ipynb
 
-Solution
+# Solution
 
 ```mermaid
 flowchart LR
