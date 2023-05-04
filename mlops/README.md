@@ -45,9 +45,17 @@ The user interacts with the containers in the following manner
 6. The web application will display the result of the predicted cclass and probabilities to the end user
 
 # Instructions for Linux
-In order to recreate this solution, ensure you are running in a linux console, and have installed git, docker
+In order to recreate this solution, ensure you are running in a linux console, and have installed docker
 
 1. Clone this repository
-2. Build the relevant web services via the build script (build.sh) or simply run docker compose build
+2. To build the relevant web services, run docker compose build
 3. Use run.sh to simulate the conversion and upload process (upload iris.ipynb, download the model, update the ml web service), call the web app backend with curl
+4. Browse to the web application (localhost:[port]) to test it further with other values
+
+# Instructions for Windows
+In order to recreate this solution, ensure you are running in a powershell console, and have already installed docker desktop. Make sure you enable WSL
+
+1. Clone this repository
+2. Build the relevant web services by running docker compose build
+3. Use run.ps1 in the powershell console to create and upload the model, and calling the webapp backend via Web-Request
 4. Browse to the web application (localhost:[port]) to test it further with other values
