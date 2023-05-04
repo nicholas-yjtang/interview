@@ -2,14 +2,37 @@ version: "3.0"
 
 services:
   predict-app:
-    image: iris-predictapp
+    image: iris-mlapp
+    build:
+      context: ./mlapp
     ports:
-      - "5000:5000"
+      - "5000"
+    volumes:
+      - predict_model:/opt/app/model
   web-app:
     image: iris-webapp
     depends_on:
       - predict-app
+    build:
+      context: ./webapp
     environment:
       - FLASK_ENDPOINT=http://predict-app:5000/predict  
     ports:
-      - "3000:3000"
+      - "3000"
+  convert-app:
+    image: iris-convertapp
+    build:
+      context: ./convertapp
+    environment:
+      - FLASK_ENDPOINT=http://predict-app:5000/predict  
+    ports:
+      - "5000"
+    volumes:
+      - notebook:/opt/app/notebook
+      - model:/opt/app/model
+      - script:/opt/app/script
+volumes:
+  notebook:
+  model:
+  script:
+  predict_model:
