@@ -53,7 +53,7 @@ In order to recreate this solution, ensure you are running in a linux console, a
 4. Browse to the web application (localhost:[port]) to test it further with other values
 
 # Instructions for Windows
-In order to recreate this solution, ensure you are running in a powershell console, and have already installed docker desktop. Make sure you enable WSL
+In order to recreate this solution, ensure you are running in a powershell console, installed powershell 7, and have already installed docker desktop. Make sure you enable WSL
 
 1. Clone this repository
 2. Build the relevant web services by running docker compose build
