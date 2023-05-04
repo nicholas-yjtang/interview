@@ -1,7 +1,7 @@
 #!/bin/bash
 convert_id=$(docker ps -f name=convert-app --format "{{.ID}}")
 convert_port=$(docker port $convert_id | grep 0.0.0.0 | cut -d ":" -f 2)
-model_name=$(curl -s -X POST localhost:$convert_port/convert -F 'file=@iris_xgboost.ipynb' | jq '.model_name' | tr -d '"')
+model_name=$(curl -s -X POST localhost:$convert_port/convert -F 'file=@iris.ipynb' | jq '.model_name' | tr -d '"')
 echo model_name: $model_name
 curl -s -X GET localhost:$convert_port/model?model_name=$model_name -o model.pkl
 predict_id=$(docker ps -f name=predict-app --format "{{.ID}}")
