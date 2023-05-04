@@ -48,6 +48,6 @@ The user interacts with the containers in the following manner
 In order to recreate this solution, ensure you are running in a linux console, and have installed git, docker
 
 1. Clone this repository
-2. Build the relevant web services via the build script (build.sh)
+2. Build the relevant web services via the build script (build.sh) or simply run docker compose build
 3. Use run.sh to simulate the conversion and upload process (upload iris.ipynb, download the model, update the ml web service), call the web app backend with curl
 4. Browse to the web application (localhost:[port]) to test it further with other values
