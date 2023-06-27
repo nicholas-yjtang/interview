@@ -53,7 +53,6 @@ int main(int argc , char *argv[])
     //Accept and incoming connection
     puts("Waiting for incoming connections...");
     c = sizeof(struct sockaddr_in);
-	pthread_t thread_id;
 	
     struct st th;
     th.id = 0;
@@ -61,14 +60,13 @@ int main(int argc , char *argv[])
 
     while( (client_sock = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&c)) ) {
         th.socket = client_sock;
-        if( pthread_create( &thread_id , NULL ,  connection_handler , &th) < 0)
+        if( pthread_create( &th.id , NULL ,  connection_handler , &th) < 0)
         {
             perror("could not create thread");
             close(client_sock);
             return 1;
         }
-        th.id = thread_id;        
-        printf("Connection accepted, Thread-ID=#[%ld]\n", thread_id);
+        printf("Connection accepted, Thread-ID=#[%ld]\n", th.id);
         puts("Handler assigned");
 
     }
