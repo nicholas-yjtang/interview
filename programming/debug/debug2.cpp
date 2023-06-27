@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
         position.push_back(createNumber(i));
     }
     
-    // retrieve and display "0,1,2,3,4,5,6,7,8,9,10"
+    // retrieve and display the alphabet by converting the number to ASCII
     for(int i = 0; i <= numSize; i++) {
         for(int j = 0; j <= i; j++) {
             char c = (j < i ) ? ',' : '\n';
