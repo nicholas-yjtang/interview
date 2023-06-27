@@ -11,9 +11,9 @@
 #include<arpa/inet.h> //inet_addr
 #include<unistd.h>    //write
 #include<pthread.h> //for threading , link with lpthread
- 
+
 typedef struct st {
-    int id;
+    pthread_t id;
     int socket;
 } sock_thread;
 
@@ -51,10 +51,6 @@ int main(int argc , char *argv[])
     listen(socket_desc , 3);
      
     //Accept and incoming connection
-    //puts("Waiting for incoming connections...");	//	PWK, repeated below
-    //c = sizeof(struct sockaddr_in);			//	PWK, repeated below
-
-    //Accept and incoming connection
     puts("Waiting for incoming connections...");
     c = sizeof(struct sockaddr_in);
 	pthread_t thread_id;
@@ -63,33 +59,18 @@ int main(int argc , char *argv[])
     th.id = 0;
     th.socket = 0;
 
-    sock_thread testsock;
-    sock_thread *ptr = (sock_thread*) &testsock;
-    ptr->id = 0;
-    ptr->socket = 0;
-
     while( (client_sock = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&c)) ) {
-        puts("Connection accepted");
-
-        ptr->socket = client_sock;
-        ptr->id++;
-
         th.socket = client_sock;
-        th.id++;
-
-        // if( pthread_create( &thread_id , NULL ,  connection_handler , (void*) &client_sock) < 0)
-        // if( pthread_create( &thread_id , NULL ,  connection_handler , ptr) < 0)
         if( pthread_create( &thread_id , NULL ,  connection_handler , &th) < 0)
         {
             perror("could not create thread");
             close(client_sock);
             return 1;
         }
+        th.id = thread_id;        
+        printf("Connection accepted, Thread-ID=#[%ld]\n", thread_id);
         puts("Handler assigned");
 
-        //Now join the thread , so that we dont terminate before the thread
-        if(pthread_join( thread_id , NULL)==0)
-            printf("%d:thread exit and joined\n", ptr->id);
     }
 
     if (client_sock < 0) {
@@ -103,14 +84,12 @@ int main(int argc , char *argv[])
  * This will handle connection for each client
  * */
 void *connection_handler(void *socket_desc)
-//void *connection_handler(void *param)
 {
-    sock_thread* t = (sock_thread*)param;	//PWK, fishy! param is not defined
+    sock_thread* t = (sock_thread*)socket_desc;
 
     //Get the socket descriptor
-    int sock = *(int*)socket_desc;
-    //int sock = t->socket;
-    int tid = t->id;
+    int sock = t->socket;
+    pthread_t tid = t->id;
 
     int read_size;
     char *message , client_message[2000];
@@ -126,7 +105,7 @@ void *connection_handler(void *socket_desc)
     while( (read_size = recv(sock , client_message , 2000 , 0)) > 0 ) {
         //end of string marker
 		client_message[read_size] = '\0';
-	    printf("%d:%s\n", tid, client_message);
+	    printf("Message from client, Thread-ID=#[%ld]:%s\n", tid, client_message);
 
 		//Send the message back to client
         write(sock , client_message , strlen(client_message));

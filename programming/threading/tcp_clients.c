@@ -32,13 +32,16 @@ int main()
 
     read(socket_desc,buffer,255);
     printf("Message from server: %s\n",buffer);
-
     while(1) {
         
         printf("Message to server: ");
         bzero(buffer,256);
         scanf("%s", buffer);
         
+        if (strcmp(buffer, "exit") == 0 || strcmp(buffer, "quit") == 0) {
+            printf("Exiting...\n");
+            break;
+        }
         write(socket_desc,buffer,strlen(buffer));
         bzero(buffer,256);
         
