@@ -1,5 +1,5 @@
 # Introduction
-This is a simple program to demonstrate the use of threads in C and linux
+In this exercise, the objective is to utilize the original server program with threads, to send in parameters to the threaded function (the thread id), and print out the thread ID as it receives messages from client programs with messages
 
 After compiling, run the threaded server program first
 

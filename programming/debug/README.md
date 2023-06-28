@@ -1,4 +1,6 @@
 # Introduction
+In this exercise, the objective is to fix the original debug.cpp program to display the correct output, and the second exercise is to instead of displaying numbers, display alphabets instead.
+
 debug will display running numbers in increasing order until 10\
 0\
 0,1\
