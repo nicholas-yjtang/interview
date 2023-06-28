@@ -5,3 +5,5 @@ pushd build
 cmake .
 make -j
 popd
+mvn build
+mvn test
