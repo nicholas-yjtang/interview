@@ -12,7 +12,7 @@ A,B,C\
 ...
 
 # Compile
-To compile run the compile.sh\
+To compile run the compile.sh
 
 # Clean
-To clean the build, run clean.sh\
+To clean the build, run clean.sh
