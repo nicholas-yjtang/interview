@@ -1,0 +1,30 @@
+@startuml Sequence of Moving Robot by X and Y distance
+actor User 
+participant Robot as Robot
+participant MobileBase as Base
+participant Location as Location
+User -> Base: Move by X distance
+activate Base
+Base -> Location: Get Current X coordinate
+activate Location
+Location --> Base: Return Current X coordinate
+deactivate Location
+Base -> Base: Calculate new X coordinate
+Base -> Location: Set new X coordinate
+activate Location
+Location --> User: Done
+deactivate Location
+deactivate Base
+User -> Base: Move by Y distance
+activate Base
+Base -> Location: Get Current Y coordinate
+activate Location
+Location --> Base : Return Current Y coordinate
+deactivate Location
+Base -> Base: Calculate new Y coordinate
+Base -> Location: Set new Y coordinate
+activate Location
+Location --> User: Done
+deactivate Location
+deactivate Base
+@enduml
