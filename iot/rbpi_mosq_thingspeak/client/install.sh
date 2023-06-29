@@ -5,13 +5,14 @@ apt-get update
 apt-get install -y python3-pip
 
 # Install Python packages
-pip3 install paho-mqtt sense-hat python-dotenv
+pip install -r requirements.txt
 
 # Create a directory for the MQTT Sensor service
 mkdir -p /opt/mqtt_sensor
 
 # Copy the Python script to the service directory
 cp mqtt_sensor.py /opt/mqtt_sensor/mqtt_sensor.py
+cp .env /opt/mqtt_sensor/.env
 
 # Create the systemd service file
 cat <<EOF > /etc/systemd/system/mqtt_sensor.service

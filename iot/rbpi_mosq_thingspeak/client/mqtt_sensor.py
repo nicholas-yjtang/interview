@@ -14,8 +14,6 @@ port = int(os.getenv("MQTT_PORT"))
 topic_sensor_data = "sensors/sensehat"
 topic_frequency = "sensors/sensehat/frequency"
 
-sense = SenseHat()
-
 default_publish_interval = int(os.getenv("DEFAULT_PUBLISH_INTERVAL", "10"))  # Default publish interval in seconds
 current_publish_interval = default_publish_interval
 
@@ -63,12 +61,11 @@ client.on_connect = on_connect
 client.on_disconnect = on_disconnect
 client.on_message = on_message
 client.on_publish = on_publish
-
 client.connect(broker_address, port, 60)
-
 client.loop_start()
 
 def publish_sensor_data():
+    sense = SenseHat()
     while True:
         temperature = sense.get_temperature()
         humidity = sense.get_humidity()
