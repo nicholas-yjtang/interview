@@ -1,0 +1,31 @@
+version: "3.0"
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    restart: always
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_config:/mosquitto/config
+      - mosquitto_log:/mosquitto/log
+  thingspeak:
+    image: synomi/thingspeak
+    ports:
+      - "20080:80"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.5
+    environment:
+      - MYSQL_ROOT_PASSWORD=speak
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  mosquitto_data:
+  mosquitto_config:
+  mosquitto_log:
+  db_data:
