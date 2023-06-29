@@ -7,3 +7,6 @@ This is a concept design for an IOT application that is based on using the raspb
 # Raspberry PI and Sensehat
 Connect the sensehat to the raspberrypi and install the client application that pulls the readings (temperature, humidity, pressure) from the sensehat (found in client/mqtt_sensor.py). Configure the MQTT server address and port in the client application via environment variables or a .env file.
 
+# Middleware Mosquitto
+The MQTT server is run as a docker instance. You can create the middleware by running docker compose up -d under the middleware folder (docker-compose.yml)
+
