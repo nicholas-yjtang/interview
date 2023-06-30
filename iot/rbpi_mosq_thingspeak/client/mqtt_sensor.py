@@ -52,7 +52,7 @@ client.on_publish = on_publish
 client.connect(broker_address, port, 60)
 client.loop_start()
 
-def get_last_command():
+def execute_command():
     url = f"https://api.thingspeak.com/talkbacks/{talkback_command_id}/commands/execute.json"
     headers = {"Content-Type": "application/json"}
     params = {"api_key": talkback_api_key}
@@ -90,7 +90,7 @@ def publish_sensor_data():
     print("Published message with ID: " + str(mid))
 
 while True:
-    command = get_last_command()
+    command = execute_command()
     #check command is None or empty
     if command and command.startswith("update_frequency"):
         frequency = command.split(":")[1]        
