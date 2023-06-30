@@ -15,8 +15,15 @@ curl -X POST https://api.thingspeak.com/talkbacks/{TALKBACK_ID}/commands.json?ap
 # Middleware Mosquitto
 The MQTT server is run as a docker instance. You can create the middleware by running docker compose up -d under the middleware folder (docker-compose.yml)
 
+You can create the bridge to upload to thingspeak via the docker-compose file as well by running
+docker compose build
+
+This will build a docker image that will run the bridge application (found in middleware/bridge.py) that will subscribe to the MQTT server and upload the data to thingspeak.
+
 # Thingspeak
 ## Control the sensor frequency update
 
 You can create a talkback app in thingspeak, and place the talkback api key and talkback id into the .env file in the raspberry pi
+
+## Perform simple data analysis and weather prediction
 
