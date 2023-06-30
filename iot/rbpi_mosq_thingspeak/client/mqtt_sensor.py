@@ -91,7 +91,8 @@ def publish_sensor_data():
 
 while True:
     command = get_last_command()
-    if command.startswith("update_frequency"):
+    #check command is None or empty
+    if command and command.startswith("update_frequency"):
         frequency = command.split(":")[1]        
         try:
             new_frequency = float(frequency)
