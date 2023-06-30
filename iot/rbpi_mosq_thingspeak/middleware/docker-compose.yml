@@ -11,3 +11,12 @@ services:
       - ./mosquitto/data:/mosquitto/data
       - ./mosquitto/config:/mosquitto/config
       - ./mosquitto/log:/mosquitto/log
+  mqtt_bridge:
+    build:
+      context: ./bridge
+      dockerfile: Dockerfile
+    environment:
+      - MQTT_BROKER_ADDRESS=${MQTT_BROKER_ADDRESS}
+      - MQTT_BROKER_PORT=${MQTT_BROKER_PORT}
+      - TOPIC=${TOPIC}
+      - THINGSPEAK_API_KEY=${THINGSPEAK_API_KEY}

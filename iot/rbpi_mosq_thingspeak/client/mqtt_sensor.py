@@ -12,7 +12,7 @@ load_dotenv()
 # Read the MQTT broker address, port, and default publish interval from the environment variables
 broker_address = os.getenv("MQTT_BROKER_ADDRESS")
 port = int(os.getenv("MQTT_BROKER_PORT"))
-topic_sensor_data = "sensors/sensehat"
+topic_sensor_data = os.getenv("TOPIC", "sensors/sensehat")
 
 talkback_api_key = os.getenv("TALKBACK_API_KEY")
 talkback_command_id = os.getenv("TALKBACK_ID")
