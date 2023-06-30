@@ -2,6 +2,7 @@ import paho.mqtt.client as mqtt
 import requests
 from dotenv import load_dotenv
 import os
+import json
 
 # Load the environment variables from the .env file
 load_dotenv()
@@ -28,8 +29,10 @@ def on_message(client, userdata, msg):
 def upload_data_to_thingspeak(data):
     url = f"https://api.thingspeak.com/update.json"
     headers = {"Content-Type": "application/x-www-form-urlencoded"}
-    payload = f"api_key={thingspeak_api_key}&field1={data}"  # Adjust field number as per your ThingSpeak configuration
-
+    #conver the payload to json
+    json_data = json.loads(data)
+    print ("Uploading data to ThingSpeak: " + data, flush=True)
+    payload = f"api_key={thingspeak_api_key}&field1={json_data['temperature']}&field3={json_data['pressure']}&field2={json_data['humidity']}" 
     response = requests.post(url, headers=headers, data=payload)
     if response.status_code == 200:
         print("Data uploaded to ThingSpeak successfully!", flush=True)
