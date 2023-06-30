@@ -13,8 +13,6 @@ mqtt_topic = os.getenv("TOPIC", "sensors/sensehat")
 
 # ThingSpeak API key from .env file
 thingspeak_api_key = os.getenv("THINGSPEAK_API_KEY")
-thingspeak_channel_id = "your_thingspeak_channel_id"  # Replace with your ThingSpeak channel ID
-
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc), flush=True)
