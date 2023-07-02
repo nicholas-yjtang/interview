@@ -12,6 +12,11 @@ For authentication, it is possible to use Azure Active Directory (https://z2jh.j
 
 # Architecture
 
+The official documentation provides how jupyterhub architecture is like
+![Alt text](image.png)
+
+We give another view of how it will work specifically with Azure services
+
 ```mermaid
 C4Container
 title Container diagram explaining the architecture using JupyterHub
