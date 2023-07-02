@@ -61,6 +61,7 @@ avgHumidity = mean(humidity);
 display(avgHumidity,'Average Humidity')
 ```
 Example output
+
 ![Alt text](image-2.png)
 
 A sample for custom visualization is as follows
