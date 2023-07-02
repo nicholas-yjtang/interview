@@ -4,6 +4,26 @@ This is a concept design for an IOT application that is based on using the raspb
 2. Perform simple data analysis and weather prediction
 3. Display custom visualization output with 48hr data trends
 
+# Architecture
+
+```mermaid
+C4Container
+System_Ext(Thingspeak, "Thingspeak online")
+Container_Boundary(IOTSystem, "IOT System") {
+    Container(RaspberryPI, "Raspberry PI with sense hat")
+    Container(MQTTServer, "MQTT Server") 
+    Container(Bridge, "Bridge", "Uploads sensor readings to thingspeak")
+    Rel(RaspberryPI, MQTTServer, "Upload sensor readings")
+    Rel(MQTTServer, Bridge, "Gets sensor readings from MQTT")
+
+}
+Rel(Thingspeak, RaspberryPI, "Control sensor update frequency")
+Rel(Thingspeak, Bridge, "Upload sensor readings")
+
+```
+
+
+
 # Raspberry PI and Sensehat
 Connect the sensehat to the raspberrypi and install the client application that pulls the readings (temperature, humidity, pressure) from the sensehat (found in client/mqtt_sensor.py). Configure the MQTT server address and port in the client application via environment variables or a .env file.
 
@@ -23,7 +43,7 @@ This will build a docker image that will run the bridge application (found in mi
 # Thingspeak
 ## Control the sensor frequency update
 
-You can create a talkback app in thingspeak, and place the talkback api key and talkback id into the .env file in the raspberry pi
+You can create a talkback app in thingspeak, and place the talkback api key and talkback id into the .env file in the raspberry pi client application. This will allow the client application to poll the talkback api to get the sensor update frequency.
 
 ## Perform simple data analysis and weather prediction
 
