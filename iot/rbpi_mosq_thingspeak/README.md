@@ -46,6 +46,8 @@ This will build a docker image that will run the bridge application (found in mi
 
 You can create a talkback app in thingspeak, and place the talkback api key and talkback id into the .env file in the raspberry pi client application. This will allow the client application to poll the talkback api to get the sensor update frequency. See the code in client/mqtt_sensor.py for more details.
 
+The command should be update_frequency:xxx
+
 ![Alt text](image.png)
 
 ## Perform simple data analysis and weather prediction
