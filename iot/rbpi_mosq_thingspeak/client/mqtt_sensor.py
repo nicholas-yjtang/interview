@@ -51,6 +51,7 @@ client.on_disconnect = on_disconnect
 client.on_publish = on_publish
 client.connect(broker_address, port, 60)
 client.loop_start()
+sense = SenseHat()
 
 def execute_command():
     url = f"https://api.thingspeak.com/talkbacks/{talkback_command_id}/commands/execute.json"
@@ -64,7 +65,6 @@ def execute_command():
         return ""
     
 def publish_sensor_data():
-    sense = SenseHat()
     temperature = sense.get_temperature()
     humidity = sense.get_humidity()
     pressure = sense.get_pressure()
