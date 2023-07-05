@@ -5,17 +5,17 @@ To perform automated configuration for up to 100 VMs/containers
 To perform this task, we propose using terraform you can import the ID via csv
 
 ```terraform
-data "csv" "students" {
-  source = "students.csv"
+locals {
+  csv_data= file("${path.module}/students.csv")
+  students = csvdecode(local.csv_data)
 }
-
 ```
 
 Using cloud-init, we can create the user and add the public key to the authorized_keys file
 
 ```terraform
 resource "azurerm_virtual_machine" "vm" {
-  count = length(data.csv.students.rows)
+  count = length(locals.students)
   ...
   ssh_keys = ["${file("~/.ssh/student_keys/${count.index}.pub")}"]
 
@@ -23,7 +23,7 @@ resource "azurerm_virtual_machine" "vm" {
   user_data = <<-EOF
     #cloud-config
     users:
-      - name: ${data.csv.students.rows[count.index].student_name}
+      - name: ${locals.students[count.index].student_name}
         ssh-authorized-keys:
           - "${file("~/.ssh/student_keys/${count.index}.pub")}"
         sudo: ["ALL=(ALL) NOPASSWD:ALL"]
