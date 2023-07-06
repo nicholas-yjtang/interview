@@ -10,6 +10,13 @@ You were given a task to automate the creation 100 VMs. You were given a list of
 
 # Solution
 
+We assume we were already given a list of ssh public keys for each user, and this csv is populated with the username and the path to the public key, in the following format:
+
+```csv
+username,ssh_key_path
+user1,/path/to/user1.pub
+```
+
 To perform this task, we propose using terraform you can import the ID via csv
 
 ```terraform
@@ -70,4 +77,4 @@ resource "azurerm_virtual_machine" "vm" {
 }
 ```
 
-For a sample of how to do this, go to  [vm_creation](https://github.com/nicholas-yjtang/scripts/tree/main/terraform/vm_creation)
+For a sample of how to do this, go to [vm_creation](https://github.com/nicholas-yjtang/scripts/tree/main/terraform/vm_creation). This example however differs by using for_each instead of count
