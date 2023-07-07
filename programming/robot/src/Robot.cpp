@@ -1,7 +1,7 @@
 #include "Robot.h"
 #include <iostream>
 
-string Robot::robotManufactuer = "SIT Robotics";
+string Robot::robotManufactuer = "Robotics Inc.";
 int Robot::numberOfRobotsExisting = 0;
 
 Robot::Robot(string serial, int numWheels, string LiDARType, bool withCam, int initial_X, int initial_Y) : base(numWheels, LiDARType, withCam, initial_X, initial_Y)

@@ -1,7 +1,7 @@
 package robotics;
 
 public class Robot {
-    private static String robotManufacturer = "SIT Robotics";
+    private static String robotManufacturer = "Robotics Inc.";
     private static int numberofRobotsExisting = 0;
     private String serialNumber;
     public MobileBase base;
