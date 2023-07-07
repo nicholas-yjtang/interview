@@ -1,0 +1,4 @@
+sense-hat
+paho-mqtt
+python-dotenv
+requests
