@@ -100,7 +100,11 @@ The original can be found under diagrams/robotics_class.puml
 ![Class Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/nicholas-yjtang/interview/main/programming/robot/diagrams/robotics_class.puml)
 
 ### Sequence Diagram
-The sequence diagram for the robot program
+Based on the main.cpp, we can see that the robot program only has one type of action that was worthwhile to create a sequence diagram for, which is the move action.
+
+We show a sequence diagram for this move action.
+
+The original can be found under diagrams/move_sequence.puml
 
 ![Sequence Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/nicholas-yjtang/interview/main/programming/robot/diagrams/move_sequence.puml)
 
