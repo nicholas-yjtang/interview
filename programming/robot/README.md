@@ -124,7 +124,10 @@ However, in java, we cannot do this.
 
 So we explicitly initialize the MobileBase class in the constructor of the Robot class.
 
-See the final Location.java, MobileBase.java and Robot.java files for the final result.
+For the main.cpp, instead of creating a java main class, we simply create a junit test case to test the robot program..\
+In the same vein of testing via print statements, we just convert the print statements to System.out.println.
+
+See the final Location.java, MobileBase.java, Robot.java amd RobotTest.java files for the final result.
 
 # Compile
 To compile run the compile.sh
