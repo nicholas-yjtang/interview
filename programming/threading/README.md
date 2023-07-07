@@ -44,7 +44,7 @@ In the original implementation, the server and client program has a bug where th
 
 In order to fix this issue, you will need to implement a protocol that will allow the client to know when the message has ended.
 
-In our case we wait to receive an OK message from the cient before we move onto the next message.
+In our case we wait to receive an OK message from the client before we move onto the next message.
 
 Other possible implementations include sending the length of the message before sending the message itself.
 
