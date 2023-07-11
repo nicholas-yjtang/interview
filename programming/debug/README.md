@@ -1,5 +1,5 @@
 # Problem
-You were given a cpp file that is supposed to display the numbers in increasing order, but it is not working.
+You were given a cpp file that is supposed to display the numbers in increasing order, but it is not working (see original.cpp)
 
 ```cpp
     // retrieve and display "0,1,2,3,4,5,6,7,8,9,10"
@@ -11,7 +11,7 @@ You were given a cpp file that is supposed to display the numbers in increasing 
     }
 ```
 
-Modify the code to display the numbers in increasing order. For example
+Modify the code to display the numbers in increasing order in each new line. For example
 0\
 0,1\
 0,1,2\
@@ -40,8 +40,8 @@ As for the second part of the problem, we can use the same logic as the first pa
 We just need to convert the numbers to alphabets via ASCII.\
 Notice that the ASCII table A is 65, so we just need to add 65 to the number output and cast the int to char.\
 
-See debug.cpp for solution to the first part of the problem.\
-See debug2.cpp for solution to the second part of the problem.
+See solution1.cpp for solution to the first part of the problem.\
+See solution2.cpp for solution to the second part of the problem.
 
 # Compile
 To compile run the compile.sh

@@ -1,3 +1,4 @@
 #!/bin/bash
-g++ debug.cpp -o debug
-g++ debug2.cpp -o debug2
+g++ original.cpp -o original
+g++ solution1.cpp -o solution1
+g++ solution2.cpp -o solution2

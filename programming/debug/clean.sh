@@ -1,2 +1,2 @@
 #!/bin/bash
-rm -f debug debug2
+rm -f original solution1 solution2
