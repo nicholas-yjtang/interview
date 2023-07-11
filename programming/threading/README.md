@@ -10,7 +10,7 @@ You are given a server program that is able to accept multiple clients concurren
 
     while((client_sock = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&c)) )
     {
-        ,,,         
+        ...         
         if( pthread_create( &thread_id , NULL ,  connection_handler , (void*) client_sock) < 0)
         ...
     }
