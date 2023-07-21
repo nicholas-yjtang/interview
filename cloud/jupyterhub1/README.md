@@ -22,7 +22,7 @@ We give another view of how it will work specifically with Azure services
 
 # Protype
 
-We create a prototype, but instead of using Azure Directory Services, we will simulate this via our own created OpenLDAP docker image. We will also use our own kubernetes cluster (via KVM) instead of Azure AKS.
+We create a prototype, but instead of using Azure Directory Services, we will simulate this via our own created OpenLDAP docker image (on premise). We will also use our own kubernetes cluster (on premise via KVM) instead of Azure AKS.
 
 ![Architecture Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/nicholas-yjtang/interview/main/cloud/jupyterhub1/diagrams/architecture_kvm_openldap.puml)
 
