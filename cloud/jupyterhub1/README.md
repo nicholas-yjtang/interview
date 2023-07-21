@@ -18,22 +18,7 @@ The official documentation provides how jupyterhub architecture is like
 
 We give another view of how it will work specifically with Azure services
 
-```mermaid
-C4Container
-title Container diagram explaining the architecture using JupyterHub
-
-Person(user, User, "Users of the jupyter notebook", $tags="v1.0")
-Container_Boundary(c1, "Azure Services") {
-    Container(jupyterhub, "JupyterHub", "Python, Jupyter Notebook", "Multi-user version of Jupyter Notebook")
-    Container(azure_ad, "Azure Active Directory", "Azure Service", "Manages users and groups")
-    Rel(jupyterhub, azure_ad, "Uses", "SAML")
-    Container(jupyternotebook, "Jupyter Notebook", "Python, Jupyter Notebook", "Data analysis tool")
-    Rel(jupyterhub, jupyternotebook, "Creates", "")
-}
-
-Rel(user, jupyternotebook, "Uses", "HTTP")
-
-```
+![Architecture Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/nicholas-yjtang/interview/main/cloud/jupyterhub1/diagrams/architecture_azure.puml)
 
 # Protype
 
