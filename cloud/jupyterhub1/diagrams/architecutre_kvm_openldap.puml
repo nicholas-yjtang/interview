@@ -1,0 +1,18 @@
+@startuml C4_Elements
+!include <C4/C4_Container>
+
+Person(user, User, "Users of the jupyter notebook")
+System_Ext(azure_ad, "OpenLDAP", "Docker container running OpenLDAP")
+
+Container_Boundary(c2, "KVM, Kubernetes") {
+    Container(proxy, "Proxy", "Hub/Notebook", "Proxy for JupyterHub/Notebook")   
+    Container(jupyterhub, "JupyterHub", "Python, Jupyter Notebook", "Multi-user version of Jupyter Notebook")
+    Container(jupyternotebook, "Jupyter Notebook", "Python, Jupyter Notebook", "Data analysis tool")
+    Rel_Down(proxy, jupyterhub, "Login", "")
+    Rel_Down(proxy, jupyternotebook, "Accesses", "")
+    Rel(jupyterhub, jupyternotebook, "Creates", "")
+
+}
+Rel(user, proxy, "Accesses", "")
+Rel(jupyterhub, azure_ad, "Authenticates", "")
+@enduml

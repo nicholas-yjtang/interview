@@ -24,6 +24,8 @@ We give another view of how it will work specifically with Azure services
 
 We create a prototype, but instead of using Azure Directory Services, we will simulate this via our own created OpenLDAP docker image. We will also use our own kubernetes cluster (via KVM) instead of Azure AKS.
 
+![Architecture Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/nicholas-yjtang/interview/main/cloud/jupyterhub1/diagrams/architecture_kvm_openldap.puml)
+
 1. Create a kubernetes cluster. In our case we will create a cluster using our own terraform scripts [here](https://github.com/nicholas-yjtang/scripts/tree/main/terraform/kubernetes)
 2. Install a LDAP service on the cluster. We create a docker that creates a OpenLDAP service that the cluster can talk to [here](https://github.com/nicholas-yjtang/scripts/tree/main/docker/openldap)
 3. Install JupyterHub on the cluster. We use the helm chart provided by JupyterHub. You can run this with the install.sh included under scripts, along with the config.yaml required to integrate with OpenLDAP
