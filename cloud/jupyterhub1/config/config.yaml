@@ -1,0 +1,19 @@
+singleuser:
+  storage:
+    dynamic:
+      storageClass: nfs-client
+debug:
+  enabled: true
+hub:
+  config:
+    JupyterHub:
+      authenticator_class: ldapauthenticator.LDAPAuthenticator
+    Authenticator:
+      admin_users:
+        - user001      
+    LDAPAuthenticator:
+      bind_dn_template: 
+        - cn={username},dc=example,dc=local
+      server_address: 10.1.0.1
+      server_port: 389
+      use_ssl: false
