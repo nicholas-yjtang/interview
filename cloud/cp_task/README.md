@@ -1,5 +1,6 @@
-# Introduction
-This task is to create a new directory, copy a file into the new directory, changing the name of the file by add the last modified date to the beginning of the original filename
+# Problem
+
+How would you copy the contents of a directory into a new directory? Copy a file into the new directory, changing the name of the file by add the last modified date to the beginning of the original filename
 
 # Usage
 
