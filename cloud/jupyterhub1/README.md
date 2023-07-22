@@ -1,10 +1,16 @@
 # Problem
 
-Propose a hybrid cloud service to allow 100 users to perform simple data analysis
+Propose a hybrid cloud service to allow 100 users to perform simple data analysis (similar to jupyter notebook)
+
+You may assume this is specifically for the education sector (students, teachers, etc)
 
 # Solution
 
 We propose using JupyterHub as the starting point for this solution. JupyterHub is a multi-user version of Jupyter Notebook (https://jupyter.org/hub)
+
+The recommendation is to use JupyterHub with Kubernetes for large number of user (> 100), and to use the littlest JupyterHub for small number of users (< 100) (https://tljh.jupyter.org/en/latest/)
+
+Considering we have 100 users, and that we may not have the sufficient GPU resources to support all 100 users, we will use JupyterHub with Kubernetes, and the Kubernetes cluster should be hosted on a cloud service (Azure AKS) with GPU support.
 
 We can run this JupyterHub using Kubernetes on Azure AKS (https://z2jh.jupyter.org/en/stable/jupyterhub/installation.html). Some additional work would be reqired to enable GPU support for the JupyterHub, but it is possible (https://learn.microsoft.com/en-us/azure/aks/gpu-cluster)
 
@@ -20,9 +26,9 @@ We give another view of how it will work specifically with Azure services
 
 ![Architecture Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/nicholas-yjtang/interview/main/cloud/jupyterhub1/diagrams/architecture_azure.puml)
 
-# Protype
+# Proof of Concept
 
-We create a prototype, but instead of using Azure Directory Services, we will simulate this via our own created OpenLDAP docker image (on premise). We will also use our own kubernetes cluster (on premise via KVM) instead of Azure AKS.
+We create a POC on how this would work, but instead of using Azure Directory Services, we will simulate this via our own created OpenLDAP docker image (on premise). We will also use our own kubernetes cluster (on premise via KVM) instead of Azure AKS. No GPU support will be enabled in this POC.
 
 ![Architecture Diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/nicholas-yjtang/interview/main/cloud/jupyterhub1/diagrams/architecture_kvm_openldap.puml)
 
