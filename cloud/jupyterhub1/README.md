@@ -10,7 +10,7 @@ We propose using JupyterHub as the starting point for this solution. JupyterHub 
 
 The recommendation is to use JupyterHub with Kubernetes for large number of user (> 100), and to use the littlest JupyterHub for small number of users (< 100) (https://tljh.jupyter.org/en/latest/)
 
-Considering we have 100 users, and that we may not have the sufficient GPU resources to support all 100 users, we will use JupyterHub with Kubernetes, and the Kubernetes cluster should be hosted on a cloud service (Azure AKS) with GPU support.
+Considering we have 100 users, and that we may not have the sufficient GPU resources to support all 100 users, we will use JupyterHub with Kubernetes, and the Kubernetes cluster should be hosted on a cloud service (Azure AKS) with GPU support. We assume these users will be using the JupyterHub for data analysis, and will require GPU support.
 
 We can run this JupyterHub using Kubernetes on Azure AKS (https://z2jh.jupyter.org/en/stable/jupyterhub/installation.html). Some additional work would be reqired to enable GPU support for the JupyterHub, but it is possible (https://learn.microsoft.com/en-us/azure/aks/gpu-cluster)
 
