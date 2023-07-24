@@ -1,0 +1,36 @@
+@startuml C4_Elements
+!include <C4/C4_Container>
+
+Person(student, Student, "")
+Person(public, Public, "")
+
+System_Ext(ldap, "LDAP", "Directory Services for authentication")
+
+System_Boundary(s1, "Kubernetes") {
+    System(controlplane, "Kubernetes Control Plane")
+    Container_Boundary(c1, "User web applications") {
+        Container(webapp, "Webapp", "Fllask/Nginx/etc")
+
+    }
+    Rel(student, controlplane, "Deploys", "https")
+    Rel(controlplane, webapp, "Creates", "http")
+    Container_Boundary(c2, "Proposed System") {
+        Container(ingress, "Ingress Controller")
+        Container(ldap_sync, "LDAP sync", "Syncs LDAP users to kubernetes")
+        Container(service_sync, "Service sync", "Watches services and updates Ingress Controller")
+        Container(container_registry, "Container Registry", "Students upload containers for deployment")
+    }   
+    Rel(ldap_sync, ldap, "Syncs LDAP", "https")
+    Rel_U(ldap_sync, controlplane, "Creates users and roles", "https")
+    Rel(controlplane, container_registry, "Pulls image", "https")
+    Rel_U(service_sync,controlplane, "Watches services", "https")
+    Rel(service_sync, ingress, "Updates", "https")
+    Rel(student, container_registry, "Uploads container", "https")
+    Rel_U(public, ingress, "Accesses", "https")
+    Rel(ingress, webapp, "Routes", "https")
+}
+
+
+
+
+@enduml
