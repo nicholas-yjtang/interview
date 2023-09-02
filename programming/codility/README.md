@@ -1,6 +1,7 @@
 # Codility Solutions
 
 Some solutions for codility lessons and exercises
+
 The lessons and exercises can be found [here](https://app.codility.com/programmers/)
 
 # Lessons
