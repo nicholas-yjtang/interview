@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include "common.h"
 
 using namespace std;
 
@@ -21,14 +22,34 @@ int solution (vector<int> &A) {
     return 0;
 }
 
+int naive_solution(vector<int>&A) {
+    for (int i = 0; i < (int)A.size(); i++) {
+        for (int j = i+1; j < (int)A.size(); j++) {
+            for (int k = j+1; k < (int)A.size(); k++) {
+                if ((long)A[i] + A[j] > A[k] && (long)A[j] + A[k] > A[i] && (long)A[k] + A[i] > A[j]) return 1;
+            }
+        }
+    }
+    return 0;
+}
+
 int main () {
     vector<int> A = {10,2,5,1,8,20};
-    cout << solution(A) << endl;
+    test(A);
     A = {10,50,5,1};
-    cout << solution(A) << endl;
+    test(A);
     A = {10,50,5,1};
-    cout << solution(A) << endl;
+    test(A);
     A = {2147483647,2147483647,2147483647};
-    cout << solution(A) << endl;
+    test(A);
+    A.clear();
+    //test case where a[i] + a[j] < a[k] for all i < j < k except for the last element
+    A.push_back(1);
+    A.push_back(2);
+    for (int i = 2; i < 40; i++) {
+        A.push_back(A[i-1] + A[i-2] + 1);        
+    }
+    A.push_back(A[A.size()-1] + A[A.size()-2] -1);
+    test(A);
     return 0;
 }
