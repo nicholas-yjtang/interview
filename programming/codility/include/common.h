@@ -7,9 +7,6 @@ using namespace std;
 
 bool debug = true;
 
-int solution(vector<int> &A);
-int naive_solution(vector<int> &A);
-
 void print_vector (vector<int> &A) {
     if (!debug) return;
     for (int i = 0; i < (int)A.size(); i++) {
@@ -18,23 +15,32 @@ void print_vector (vector<int> &A) {
     cout << endl;
 }
 
-void test(vector<int> &A) {
+void test(vector<int> &A, int (*solution)(vector<int>&), int (*naive_solution)(vector<int>&)) {
 
-    print_vector(A);
     time_t start, end;
-    double time_taken;
     start = clock();
     int result = solution(A);
     end = clock();
-    time_taken = double(end - start) / double(CLOCKS_PER_SEC);
-    cout << "Solution time taken: " << time_taken << " seconds" << endl;
+    double solution_time_taken = double(end - start) / double(CLOCKS_PER_SEC);
     start = clock();
     int naive_result = naive_solution(A);
     end = clock();
-    time_taken = double(end - start) / double(CLOCKS_PER_SEC);
-    cout << "Naive solution time taken: " << time_taken << " seconds" << endl;
+    double naive_time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+    double difference = (solution_time_taken > naive_time_taken) ? solution_time_taken - naive_time_taken : naive_time_taken - solution_time_taken;
+    string compare_time = (solution_time_taken > naive_time_taken) ? "slower by " : "faster by ";
     if (result != naive_result) {
-        cout << "Error: result=" << result << " naive_result=" << naive_result << endl;
+        if (debug) print_vector(A);
+        cout << "Error: result=" << result << " expected_result=" << naive_result << ", solution is " << compare_time << difference << endl;
+        
+    }
+    else {
+        cout << "OK, solution is " << compare_time << difference << endl;
+    }
+}
+
+void test (int expected_result, int result) {
+    if (result != expected_result) {
+        cout << "Error: result=" << result << " expected_result=" << expected_result << endl;
     }
     else {
         cout << "OK" << endl;

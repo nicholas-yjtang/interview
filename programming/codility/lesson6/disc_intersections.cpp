@@ -60,8 +60,14 @@ int naive_solution(vector <int> &A) {
 
 int main () {
     vector<int> A = {1,5,2,1,4,0};
-    test(A);
+    test(A, solution, naive_solution);
     A = {1, 2147483647, 0};
-    test(A);
+    test(A, solution, naive_solution);
+    //large test case
+    A.clear();
+    for (int i = 0; i < 10000; i++) {
+        A.push_back(10000);
+    }
+    test(A, solution, naive_solution);
     return 0;
 }

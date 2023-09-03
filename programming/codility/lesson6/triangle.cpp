@@ -35,13 +35,13 @@ int naive_solution(vector<int>&A) {
 
 int main () {
     vector<int> A = {10,2,5,1,8,20};
-    test(A);
+    test(A, solution, naive_solution);
     A = {10,50,5,1};
-    test(A);
+    test(A, solution, naive_solution);
     A = {10,50,5,1};
-    test(A);
+    test(A, solution, naive_solution);
     A = {2147483647,2147483647,2147483647};
-    test(A);
+    test(A, solution, naive_solution);
     A.clear();
     //test case where a[i] + a[j] < a[k] for all i < j < k except for the last element
     A.push_back(1);
@@ -50,6 +50,6 @@ int main () {
         A.push_back(A[i-1] + A[i-2] + 1);        
     }
     A.push_back(A[A.size()-1] + A[A.size()-2] -1);
-    test(A);
+    test(A, solution, naive_solution);
     return 0;
 }

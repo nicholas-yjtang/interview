@@ -35,3 +35,9 @@ The lessons and exercises can be found [here](https://app.codility.com/programme
 - [MaxProductOfThree](lesson6/max_product_three.cpp)
 - [NumberOfDiscIntersections](lesson6/disc_intersections.cpp)
 - [Triangle](lesson6/triangle.cpp)
+
+## Lesson 7 - Stacks and Queues
+- [Brackets](lesson7/brackets.cpp)
+- [Fish](lesson7/fish.cpp)
+- [Nesting](lesson7/nesting.cpp)
+- [StoneWall](lesson7/stonewall.cpp)
