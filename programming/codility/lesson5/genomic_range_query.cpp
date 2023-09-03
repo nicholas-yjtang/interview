@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "common.h"
+
 using namespace std;
 
 vector<int> solution (string & S, vector<int> &P, vector<int> &Q) {
@@ -40,6 +42,5 @@ int main() {
     string S = "CAGCCTA";
     vector<int> P = {2,5,0};
     vector<int> Q = {4,5,6};
-    auto result = solution(S,P,Q);
-    print_result(result);
+    test (solution(S,P,Q), {2,4,1});    
 }

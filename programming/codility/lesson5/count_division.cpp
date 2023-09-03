@@ -1,4 +1,5 @@
 #include <iostream>
+#include "common.h"
 using namespace std;
 
 int solution (int A, int B, int K) {
@@ -11,6 +12,6 @@ int solution (int A, int B, int K) {
 }
 
 int main () {
-    cout << solution(6,11,2) << endl;
+    test(solution(6,11,2), 3);
     return 0;
 }

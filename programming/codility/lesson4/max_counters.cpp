@@ -28,12 +28,8 @@ vector<int> solution (int N, vector<int> & A) {
 }
 
 int main () {
-    int N = 5;
-    vector<int> A = {3,4,4,N+1,1,4,4};
-    vector<int> B = solution(5,A);
-    print_vector(B);
-    N=1;
-    A = {2,1,1,2,1};
-    B = solution(N,A);
-    print_vector(B);
+    vector<int> A = {3,4,4,6,1,4,4};
+    test(solution(5,A), {3,2,2,4,2});
+    A = {3,4,4,6,1,4,4,6,6,6,6,6,6,6,6,6,6,6,6,6};
+    test(solution(5,A), {4,4,4,4,4});
 }

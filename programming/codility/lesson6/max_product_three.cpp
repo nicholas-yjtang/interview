@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include "common.h"
 
 using namespace std;
 
@@ -18,8 +19,8 @@ int solution (vector<int>&A) {
 
 int main () {
     vector<int> A = {-3,1,2,-2,5,6};
-    cout << solution(A) << endl;
+    test(solution(A), 60);
     A = {-5,5,-5,4};
-    cout << solution(A) << endl;
+    test(solution(A), 125);
     return 0;
 }

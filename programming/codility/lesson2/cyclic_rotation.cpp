@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "common.h"
 
 using namespace std;
 
@@ -13,10 +14,6 @@ vector<int> solution(vector<int> &A, int K) {
 
 int main () {
     vector<int> A = {3,8,9,7,6};
-    vector<int> B = solution(A, 3);
-    for (int i = 0; i < (int)B.size(); i++) {
-        cout << B[i] << " ";
-    }
-    cout << endl;
+    test(solution(A, 3), {9,7,6,3,8});
     return 0;
 }

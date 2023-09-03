@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
+#include "common.h"
 
 using namespace std;
 
@@ -17,6 +18,11 @@ int solution (vector<int>&A) {
     int current_sum = min_sum;
     int current_num_of_elements = min_sum_num_of_elements;
     for (int i = 2; i < (int)A.size(); i++) {
+        // To decide if we should include the current element to the average 
+        // This current element should be smaller than the current average
+        // Otherwise there is no reason to include this particular element
+        // The second factor to decide is to see if the previous element is bigger than the current average
+        // Because a smaller average can be obtained via a positive between 2 negative numbers, for example -100, 1, -200
         if (A[i] < average(current_sum, current_num_of_elements)
             && A[i-1] > average(current_sum, current_num_of_elements)
         ) {
@@ -24,12 +30,14 @@ int solution (vector<int>&A) {
             current_num_of_elements++;
         }
         else {
+            // since this is no longer a candidate for the smaller average
+            // we can check if the current average is smaller than the previous minimum average
+            // we can also set the new current average to be the current element, and the previous element
             if (average(current_sum, current_num_of_elements) < average(min_sum, min_sum_num_of_elements)) {
                 min_sum = current_sum;                
                 min_sum_num_of_elements = current_num_of_elements;
                 min_sum_pos = i-current_num_of_elements;
             }
-            //cout << "current_avg:" << average(current_sum, current_num_of_elements)<< ", pos: " << i-current_num_of_elements << "," << i-1 << endl;
             current_sum = A[i-1]+A[i];
             current_num_of_elements = 2;
         }
@@ -40,21 +48,20 @@ int solution (vector<int>&A) {
         min_sum_num_of_elements = current_num_of_elements;
         min_sum_pos = A.size()-current_num_of_elements;
     }
-    //cout << "min_avg: " << average(min_sum, min_sum_num_of_elements) << endl;
     return min_sum_pos;
 
 }
 
 int main () {
     vector<int> A = {4,2,2,5,1,5,8};
-    cout << solution(A) << endl;
+    test (solution(A), 1);
     A = {4,2,2,-1000,1,-1000,8};
-    cout << solution(A) << endl;
+    test (solution(A), 3);
     A = {1,2};
-    cout << solution(A) << endl;
+    test (solution(A), 0);
     A = {1,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    cout << solution(A) << endl;    
+    test (solution(A), 1);
     A = {1,0,0,0,0,0,0,0,0,0,0,0,0,-1};
-    cout << solution(A) << endl;  
+    test (solution(A), 12);
     return 0;
 }

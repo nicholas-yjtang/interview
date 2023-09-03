@@ -1,4 +1,6 @@
 #include <iostream>
+#include "common.h"
+
 using namespace std;
 
 int solution(int N) {
@@ -27,9 +29,13 @@ int solution(int N) {
 }
 
 int main () {
-    cout << solution(1041) << endl; //5
-    cout << solution(32) << endl; //0
-    cout << solution(15) << endl; //0
-    cout << solution(74901729) << endl; //4
+
+    test(solution(9), 2);
+    test(solution(529), 4);
+    test(solution(20), 1);
+    test(solution(15), 0);
+    test(solution(32), 0);
+    test(solution(1041), 5);
+    test(solution(74901729), 4);
     return 0;
 }

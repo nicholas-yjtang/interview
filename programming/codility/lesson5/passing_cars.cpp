@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "common.h"
 
 using namespace std;
 
@@ -30,6 +31,6 @@ int solution(vector<int> &A) {
 
 int main() {
     vector<int> A = {0,1,0,1,1};
-    cout << solution(A) << endl;
+    test(solution(A), 5);
     return 0;
 }

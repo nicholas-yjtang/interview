@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include "common.h"
 
 using namespace std;
 
@@ -21,9 +22,9 @@ int solution(vector<int> &A) {
 
 int main () {
     vector<int> A = {1,3,6,4,1,2};
-    cout << solution(A) << endl;
+    test(solution(A), 5);
     A = {1,2,3};
-    cout << solution(A) << endl;
+    test(solution(A), 4);
     A = {-1,-3};
-    cout << solution(A) << endl;
+    test(solution(A), 1);
 }

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include "common.h"
+
 using namespace std;
 
 int solution(int X, vector<int> &A) {
@@ -20,6 +22,6 @@ int solution(int X, vector<int> &A) {
 
 int main () {
     vector<int> A = {1,3,1,4,2,3,5,4};
-    cout << solution(5,A) << endl;
+    test(solution(5, A), 6);    
     return 0;
 }

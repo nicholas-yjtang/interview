@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "common.h"
 
 using namespace std;
 
@@ -22,8 +23,8 @@ int solution (vector <int> & A) {
 
 int main() {
     vector<int> A = {3,1,2,4,3};
-    cout << solution(A) << endl;
+    test(solution(A), 1);
     A = {-1000,1000};
-    cout << solution(A) << endl;
+    test(solution(A), 2000);
 
 }

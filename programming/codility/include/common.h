@@ -47,4 +47,16 @@ void test (int expected_result, int result) {
     }
 }
 
+void test(vector<int> results, vector<int> expected_results) {
+    if (results.size() != expected_results.size()) {
+        cout << "Error: result size=" << results.size() << " expected_result size=" << expected_results.size() << endl;
+        return;
+    }
+    for (int i = 0; i < (int)results.size() &&  i < (int) expected_results.size(); i++) {
+        if (results[i] != expected_results[i]) {
+            cout << "Error: result[" << i << "]=" << results[i] << " expected_result[" << i << "]=" << expected_results[i] << endl;
+        }
+    }
+    cout << "OK" << endl;
+}
 #endif
