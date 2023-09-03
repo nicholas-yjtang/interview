@@ -8,6 +8,7 @@ using namespace std;
 vector<int> solution (string & S, vector<int> &P, vector<int> &Q) {
     int N = (int)S.size();
     int M = (int)P.size();
+    // we add the cumulative sum of each letter to a vector
     vector<int> A(N+1,0);
     vector<int> C(N+1,0);
     vector<int> G(N+1,0);
@@ -24,6 +25,8 @@ vector<int> solution (string & S, vector<int> &P, vector<int> &Q) {
     }
     vector<int> result(M,0);
     for (int i = 0; i < M; i++) {
+        //to check if a particular letter is present in a range, we just need to check the difference between the
+        //cumulative sums of the beginning and end of the range
         if (A[Q[i]+1] - A[P[i]] > 0) result[i] = 1;
         else if (C[Q[i]+1] - C[P[i]] > 0) result[i] = 2;
         else if (G[Q[i]+1] - G[P[i]] > 0) result[i] = 3;
