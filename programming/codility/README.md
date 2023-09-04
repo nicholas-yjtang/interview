@@ -41,3 +41,7 @@ The lessons and exercises can be found [here](https://app.codility.com/programme
 - [Fish](lesson7/fish.cpp)
 - [Nesting](lesson7/nesting.cpp)
 - [StoneWall](lesson7/stonewall.cpp)
+
+## Lesson 8 - Leader
+- [Dominator](lesson8/dominator.cpp)
+- [EquiLeader](lesson8/equi_leader.cpp)
