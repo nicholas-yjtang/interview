@@ -15,6 +15,10 @@ void print_vector (vector<int> &A) {
     cout << endl;
 }
 
+void print_slice(vector<int> max_ending_left_index, vector<int> max_ending_right_index, int i, int current_double_slice) {
+    cout << "(" << max_ending_left_index[i-1] << "," << i << "," << max_ending_right_index[i+1] << ")=" <<  current_double_slice << endl;
+}
+
 void test(vector<int> &A, int (*solution)(vector<int>&), int (*naive_solution)(vector<int>&)) {
 
     time_t start, end;
@@ -38,7 +42,7 @@ void test(vector<int> &A, int (*solution)(vector<int>&), int (*naive_solution)(v
     }
 }
 
-void test (int expected_result, int result) {
+void test (int result, int expected_result) {
     if (result != expected_result) {
         cout << "Error: result=" << result << " expected_result=" << expected_result << endl;
     }

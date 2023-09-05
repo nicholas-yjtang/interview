@@ -45,3 +45,8 @@ The lessons and exercises can be found [here](https://app.codility.com/programme
 ## Lesson 8 - Leader
 - [Dominator](lesson8/dominator.cpp)
 - [EquiLeader](lesson8/equi_leader.cpp)
+
+## Lesson 9 - Maximum slice problem
+- [MaxDoubleSliceSum](lesson9/max_double_slice.cpp)
+- [MaxProfit](lesson9/max_profit.cpp)
+- [MaxSliceSum](lesson9/max_slice_sum.cpp)
