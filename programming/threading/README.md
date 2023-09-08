@@ -1,4 +1,5 @@
 # Problem
+
 You are given a server program that is able to accept multiple clients concurrently.
 
 ```cpp
@@ -18,7 +19,11 @@ You are given a server program that is able to accept multiple clients concurren
 ```
 However what you want to achieve is to print out the thread ID as it receives messages from client programs with messages inside the implementation of the connection_handle. How would you do this?
 
+On further testing of your application, you notice occasionally the server program will hang. What is the cause of this issue, and how would you fix it?
+
 # Solution
+
+## To output the thread ID
 
 We will simply pass in a struct to the thread function that contains the thread ID, and have the create_thread function write the thread id to a reference of the struct
 
@@ -38,9 +43,34 @@ After compiling, run the threaded server program first
 
 You can thererafter run multiple clients to connect to the server from different terminals
 
-## Additional note
+## To fix the server hang issue
 
-In the original implementation, the server and client program has a bug where the client program will occasionally block on waiting for a 2nd recv call. This is because a streaming connection itself does not know boundaries of the message being sent, and in this case, the 2 send calls from the server were combined into a single recv call on the client, so the client program will wait indefinitely for the 2nd recv call.
+In the original implementation, the server and client program has a bug where the client program will occasionally block on waiting for a 2nd recv call. 
+
+This is because a streaming connection itself does not know boundaries of the message being sent, and in this case, the 2 send calls from the server were combined into a single recv call on the client, so the client program will wait indefinitely for the 2nd recv call.
+
+tcp_server_threads.c
+```cpp Server
+    ...
+    //Send some messages to the client
+    message = "Greetings! I am your connection handler\n";
+    write(sock , message , strlen(message));
+     
+    message = "Now type something and i shall repeat what you type \n";
+    write(sock , message , strlen(message));
+    ...
+```
+
+tcp_clients.c
+```cpp Client
+    ...
+    read(socket_desc,buffer,255);
+    printf("Message from server: %s\n",buffer);
+
+    read(socket_desc,buffer,255);
+    printf("Message from server: %s\n",buffer);
+    ...
+```
 
 In order to fix this issue, you will need to implement a protocol that will allow the client to know when the message has ended.
 
