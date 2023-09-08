@@ -1,4 +1,5 @@
 # Problem
+
 You were given a cpp file that is supposed to display the numbers in increasing order, but it is not working (see original.cpp)
 
 ```cpp
@@ -25,6 +26,8 @@ A,B,C\
 ...
 A,B,C,D,E,F,G,H,I,J,K\
 
+Make additional improvements as you see fit
+
 # Solution
 
 The code has a few problems.\
@@ -40,8 +43,10 @@ As for the second part of the problem, we can use the same logic as the first pa
 We just need to convert the numbers to alphabets via ASCII.\
 Notice that the ASCII table A is 65, so we just need to add 65 to the number output and cast the int to char.\
 
-See solution1.cpp for solution to the first part of the problem.\
-See solution2.cpp for solution to the second part of the problem.
+In order to make it easier for displaying both solutions in the same code, we refactor the display code portion into a function.\
+We also add a new parameter to the function to indicate if we are displaying numbers or alphabets.\
+
+Additionally instead of doing a manual clean up, we will use unique_ptr to manage the memory for us.
 
 # Compile
 To compile run the compile.sh
