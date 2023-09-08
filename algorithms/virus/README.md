@@ -1,4 +1,16 @@
-To compile
+# Problem
+
+You are given a hospital with a 2D grid of wards, and a list of patients that are infected. 
+
+The virus is able to spread to the adjacent wards (up, down, left, right) in a single day, but only if the adjacent ward is not empty.
+
+Solve this problem by writing a program that will output the number of days it takes for the virus to spread to all the wards.
+
+You may use any language of your choice, and choose the appropriate input for your program
+
+# Solution 
+
+## To compile
 
 Ensure you are on a linux compatible platform (for example ubuntu)\
 Ensure the following libraries are installed (log4cxx gtest)\
@@ -9,7 +21,9 @@ Run the following to compile/build the executable\
 cmake .\
 make
 
-Running the application, the log4j.properties file should be in the folder (conf/log4j.properties), with the input as a text file, of the format\
+## Running the application
+
+the log4j.properties file should be in the folder (conf/log4j.properties), with the input as a text file, of the format\
 row column\
 x x x x x\
 x x x x x
